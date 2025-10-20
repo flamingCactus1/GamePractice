@@ -1,4 +1,4 @@
-package Resources.UsableObjects.DefinedItems.Daggers;
+package Resources.UsableObjects.DefinedItems.Weapons.Daggers;
 
 import Resources.UsableObjects.Weapon;
 import Resources.WeaponClass;

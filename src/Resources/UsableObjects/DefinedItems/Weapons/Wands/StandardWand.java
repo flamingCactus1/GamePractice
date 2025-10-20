@@ -1,4 +1,4 @@
-package Resources.UsableObjects.DefinedItems.Wands;
+package Resources.UsableObjects.DefinedItems.Weapons.Wands;
 
 import Resources.UsableObjects.Weapon;
 import Resources.WeaponClass;

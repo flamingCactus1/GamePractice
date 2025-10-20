@@ -2,15 +2,11 @@ package Resources.Characters;
 
 import Resources.Equipment;
 import Resources.Inventory;
+import Resources.UsableObjects.DefinedItems.Potions.HealingPotion;
+import Resources.UsableObjects.Item;
+import Resources.UsableObjects.Potion;
 
 import java.util.Scanner;
-
-enum PlayerClass{
-    MAGE,
-    BARBARIAN,
-    ARCHER,
-    ROGUE
-}
 
 public class Player extends Character {
     private PlayerClass playerClass;
@@ -60,6 +56,14 @@ public class Player extends Character {
             this.experienceToNextLevel += 10;
             this.experience = 0;
 
+        }
+    }
+
+    public void useItem(Item item) {
+        if(item instanceof Potion){
+            item.use(this);
+        }else {
+            System.out.println("Nothing happened");
         }
     }
 

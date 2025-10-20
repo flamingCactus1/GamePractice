@@ -2,17 +2,14 @@ package Resources.UsableObjects;
 
 import Resources.Characters.Player;
 
-public class Armor extends Item{
-    private int defenceBonus;
+public class Potion extends Item {
 
-    public Armor(String name, String description, int defenceBonus) {
+    public Potion(String name, String description) {
         super(name, description);
-        this.defenceBonus = defenceBonus;
     }
 
-    public Armor() {
+    public Potion() {
         super();
-        this.defenceBonus = 0;
     }
 
     @Override

@@ -58,4 +58,8 @@ abstract public class Character {
     public void setDefence(int defence) {
         this.defence = defence;
     }
+
+    public void heal(int amount) {
+        this.health = Math.min(this.health + amount, maxHealth);
+    }
 }

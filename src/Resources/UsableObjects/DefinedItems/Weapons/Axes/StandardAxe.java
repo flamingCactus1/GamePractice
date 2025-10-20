@@ -1,4 +1,4 @@
-package Resources.UsableObjects.DefinedItems.Axes;
+package Resources.UsableObjects.DefinedItems.Weapons.Axes;
 
 import Resources.UsableObjects.Weapon;
 import Resources.WeaponClass;
