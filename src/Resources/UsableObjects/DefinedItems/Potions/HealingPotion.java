@@ -5,10 +5,10 @@ import Resources.UsableObjects.Item;
 import Resources.UsableObjects.Potion;
 
 public final class HealingPotion extends Potion {
-    private int healingAmount;
+    private final int healingAmount;
 
-    public HealingPotion(String name, String description) {
-        super(name, description);
+    public HealingPotion() {
+        super("Healing Potion", "This potion heals 30 HP");
         this.healingAmount = 30;
     }
 
@@ -19,7 +19,4 @@ public final class HealingPotion extends Potion {
         System.out.println("Your HP are " + player.getHealth());
     }
 
-    public void stateDetails(){
-        System.out.println("Heals 30 HP");
-    }
 }

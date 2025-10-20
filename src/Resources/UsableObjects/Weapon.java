@@ -38,7 +38,8 @@ public class Weapon extends Item {
         System.out.println("Nothing happened");
     }
 
-    public void stateDetails(){
+    @Override
+    public void showDetails() {
         System.out.println("Name: " + this.getName());
         System.out.println("Description: " + this.getDescription());
         System.out.println("Attack bonus: " + attackBonus);
