@@ -15,6 +15,10 @@ public class Armor extends Item{
         this.defenceBonus = 0;
     }
 
+    public int getDefenceBonus() {
+        return defenceBonus;
+    }
+
     @Override
     public void use(Player player) {
         System.out.println("Nothing happened");

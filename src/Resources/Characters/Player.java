@@ -59,6 +59,10 @@ public class Player extends Character {
         }
     }
 
+    public PlayerClass getPlayerClass() {
+        return playerClass;
+    }
+
     public void useItem(Item item) {
         if(item instanceof Potion){
             item.use(this);

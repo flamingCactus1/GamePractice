@@ -1,6 +1,6 @@
 package Resources.Characters;
 
-enum PlayerClass {
+public enum PlayerClass {
     MAGE,
     BARBARIAN,
     ARCHER,
