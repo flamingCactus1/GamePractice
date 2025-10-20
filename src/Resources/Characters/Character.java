@@ -12,7 +12,7 @@ abstract public class Character {
     public abstract void attack(Character target);
 
     public void takeDamage(int amount){
-        this.health -= amount;
+        this.health -= (amount - this.defence);
     }
 
     public boolean isAlive(){

@@ -10,7 +10,7 @@ import java.util.List;
 public class Inventory {
     private List<Item> items = new ArrayList<Item>();
 
-    public Inventory(Player player) {
+    public Inventory() {
         for (int i = 0; i <= 3; i++) {
             items.set(i, new HealingPotion());
         }
