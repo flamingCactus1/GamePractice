@@ -3,8 +3,8 @@ package Resources.UsableObjects;
 import Resources.Characters.Player;
 
 abstract public class Item {
-    protected String name;
-    protected String description;
+    private String name;
+    private String description;
 
     public Item() {
         this.name = "";
