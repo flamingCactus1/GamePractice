@@ -40,7 +40,7 @@ public class BattleEvent implements Event {
                 case "4", "show your stats", "stats" -> {
                     player.showStats();
                 }
-                case "5", "show enemy stats", "enemy stats"{
+                case "5", "show enemy stats", "enemy stats" ->{
                     this.enemy.showEnemyStats();
                 }
                 case "6", "exit" -> {
