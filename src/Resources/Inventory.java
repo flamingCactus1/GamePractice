@@ -56,4 +56,7 @@ public class Inventory {
     }
 
 
+    public boolean hasItem(String itemName) {
+        return items.stream().anyMatch(n -> n.getName().equals(itemName));
+    }
 }

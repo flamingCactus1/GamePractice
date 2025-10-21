@@ -118,6 +118,15 @@ public class Player extends Character {
         };
     }
 
+    public void pickUp(Item item) {
+        System.out.println("You have picked up " + item.getName());
+        this.inventory.addItem(item);
+    }
+
+    public boolean hasItem(String itemName) {
+        return this.inventory.hasItem(itemName);
+    }
+
     public void exploreInventory(){
         while(true){
             this.inventory.showInventory();

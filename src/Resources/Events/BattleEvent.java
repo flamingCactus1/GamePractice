@@ -12,7 +12,7 @@ public class BattleEvent implements Event {
     private Enemy enemy;
 
 
-    private void makeMove(Player player) {
+    private void makeMove(Player player, boolean decision) {
         int actionPoints = player.getPlayerClass() == PlayerClass.ROGUE ? 2: 1;
         while (actionPoints > 0) {
             Scanner input = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class BattleEvent implements Event {
                     player.heal(30);
                     actionPoints--;
                 }
-                case "3", "explore" -> {
+                case "3", "explore", "explore inventory", "inventory" -> {
                     player.exploreInventory();
                 }
                 case "4", "show your stats", "stats" -> {
@@ -44,7 +44,7 @@ public class BattleEvent implements Event {
                     this.enemy.showEnemyStats();
                 }
                 case "6", "exit" -> {
-                    break;
+                    decision = true;
                 }
                 default -> {
                     System.out.println("Invalid choice. Try again.");
@@ -59,8 +59,9 @@ public class BattleEvent implements Event {
         this.enemy = new Enemy();
         System.out.println(this.enemy.getName() + " the " + this.enemy.getEnemyTypeString() + " aggressively stares at you");
         System.out.println();
-        while(enemy.isAlive() && player.isAlive()){
-            makeMove(player);
+        boolean decision = false;
+        while(enemy.isAlive() && player.isAlive() && !decision) {
+            makeMove(player, decision);
             if(!this.enemy.isAlive()){
                 player.gainExperience(this.enemy.getExperienceReward());
                 System.out.println("Congratulations, you've won!");
