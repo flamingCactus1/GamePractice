@@ -64,7 +64,7 @@ public class Enemy extends Character {
         return experienceReward;
     }
 
-    private String getEnemyTypeString() {
+    public String getEnemyTypeString() {
         return switch (this.enemyType) {
             case ORC -> "ORC";
             case SKELETON -> "SKELETON";

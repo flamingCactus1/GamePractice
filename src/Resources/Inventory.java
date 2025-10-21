@@ -38,4 +38,18 @@ public class Inventory {
         System.out.println();
     }
 
+    public void useItem(Item  item, Player player) {
+        if (items.contains(item)) {
+            item.use(player);
+            if (item instanceof HealingPotion) {
+                items.removeIf(n -> n.getName().equals(item.getName()));
+            }
+        }
+    }
+
+    public long getAmountOfHealingPotions() {
+        return items.stream().filter(n -> n instanceof HealingPotion).count();
+    }
+
+
 }

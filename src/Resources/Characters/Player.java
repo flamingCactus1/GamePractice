@@ -118,6 +118,15 @@ public class Player extends Character {
         };
     }
 
+    @Override
+    public void heal(int amount) {
+        if(this.inventory.getAmountOfHealingPotions()>0){
+            super.heal(amount);
+            this.inventory.removeItem("Healing Potion");
+        }else{
+            System.out.println("No healing potions found");
+        }
+    }
 
     @Override
     public void attack(Character target) {
