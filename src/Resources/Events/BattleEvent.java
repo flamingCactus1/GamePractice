@@ -10,11 +10,12 @@ import static Resources.UsefulFunctions.generateRandomInt;
 
 public class BattleEvent implements Event {
     private Enemy enemy;
+    private boolean decision;
 
 
-    private void makeMove(Player player, boolean decision) {
+    private void makeMove(Player player) {
         int actionPoints = player.getPlayerClass() == PlayerClass.ROGUE ? 2: 1;
-        while (actionPoints > 0) {
+        while (actionPoints > 0 && !decision) {
             Scanner input = new Scanner(System.in);
             System.out.println("What would you like to do?");
             System.out.println("1. Attack");
@@ -44,7 +45,7 @@ public class BattleEvent implements Event {
                     this.enemy.showEnemyStats();
                 }
                 case "6", "exit" -> {
-                    decision = true;
+                    this.decision = true;
                 }
                 default -> {
                     System.out.println("Invalid choice. Try again.");
@@ -59,18 +60,24 @@ public class BattleEvent implements Event {
         this.enemy = new Enemy();
         System.out.println(this.enemy.getName() + " the " + this.enemy.getEnemyTypeString() + " aggressively stares at you");
         System.out.println();
-        boolean decision = false;
-        while(enemy.isAlive() && player.isAlive() && !decision) {
-            makeMove(player, decision);
+        this.decision = false;
+        while(enemy.isAlive() && player.isAlive()) {
+            makeMove(player);
             if(!this.enemy.isAlive()){
                 player.gainExperience(this.enemy.getExperienceReward());
                 System.out.println("Congratulations, you've won!");
                 System.out.println();
                 break;
             }
+            if(this.decision) {
+                break;
+            }
             int enemyChoice = generateRandomInt(1,8);
             switch (enemyChoice){
-                case 1 -> this.enemy.heal(5);
+                case 1 -> {
+                    System.out.println(this.enemy.getName() + " heals");
+                    this.enemy.heal(5);
+                }
                 case 2 -> {
                     System.out.println("Enemy has attempted to attack");
                     System.out.println("Attack had no effect on you");

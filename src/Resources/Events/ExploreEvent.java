@@ -26,6 +26,7 @@ import java.util.Scanner;
 import static Resources.UsefulFunctions.generateRandomInt;
 
 public class ExploreEvent implements Event {
+    private boolean decision;
 
     private void curseEvent(Player player, Item item, int amount, int probability) {
         int randomNumber = generateRandomInt(1, 100);
@@ -98,9 +99,8 @@ public class ExploreEvent implements Event {
             default -> generateArmor();
         };
         int amountOfHealingPotions = generateAmountOfHealingPotions();
-        boolean decision = false;
         System.out.println("You enter the room with the big chest in the middle of it");
-        while (player.isAlive() && !decision) {
+        while (player.isAlive()) {
             Scanner input = new Scanner(System.in);
             System.out.println("What would you like to do?");
             System.out.println("1. Explore the chest");
@@ -143,13 +143,14 @@ public class ExploreEvent implements Event {
                     player.showStats();
                 }
                 case "5", "exit" -> {
-                    decision = true;
+                    this.decision = true;
                 }
                 default -> {
                     System.out.println("Invalid choice. Try again.");
                 }
             }
             System.out.println();
+            if (this.decision) break;
         }
         System.out.println("What would yo like to do");
     }
