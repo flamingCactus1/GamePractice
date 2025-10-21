@@ -70,6 +70,7 @@ public class BattleEvent implements Event {
                 break;
             }
             if(this.decision) {
+                player.setGoToMainMenu(true);
                 break;
             }
             int enemyChoice = generateRandomInt(1,8);
@@ -86,6 +87,7 @@ public class BattleEvent implements Event {
             }
             if (!player.isAlive()){
                 System.out.println("You've lost!");
+                player.setGoToMainMenu(true);
                 break;
             }
         }

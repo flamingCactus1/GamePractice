@@ -22,6 +22,9 @@ public class Main {
                     while(player.isAlive()){
                         Event event = EventFactory.generateEvent();
                         event.execute(player);
+                        if(player.isGoToMainMenu()){
+                            break;
+                        }
                     }
                 }
                 case "2", "exit", "quit" ->{
