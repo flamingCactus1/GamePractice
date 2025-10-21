@@ -34,9 +34,9 @@ public class Enemy extends Character {
 
     public void createEnemyStats(EnemyType enemyType) {
         switch (enemyType) {
-            case ORC -> generateEnemy(2,3,70,30);
-            case SKELETON -> generateEnemy(6,0,30,15);
-            case GOBLIN -> generateEnemy(4,1,50,25);
+            case ORC -> generateEnemy(4,3,70,30);
+            case SKELETON -> generateEnemy(12,0,30,15);
+            case GOBLIN -> generateEnemy(8,1,50,25);
             default -> System.out.println("No enemy type found");
         }
     }
