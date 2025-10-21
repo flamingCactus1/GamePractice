@@ -126,14 +126,15 @@ public class Player extends Character {
     }
 
     public void exploreInventory(){
-        while(true){
-            this.inventory.showInventory();
+        boolean decision = false;
+        while(!decision){
             System.out.println("What would you like to do?");
             System.out.println("1. Explore item");
             System.out.println("2. Remove item");
             System.out.println("3. Equip item");
             System.out.println("4. Use item");
-            System.out.println("5. Quit");
+            System.out.println("5. List items");
+            System.out.println("6. Quit");
             Scanner sc = new Scanner(System.in);
             String response = sc.nextLine();
             switch (response.toLowerCase()) {
@@ -160,7 +161,8 @@ public class Player extends Character {
                     response = sc.nextLine();
                     this.inventory.useItem(this.inventory.getItem(response), this);
                 }
-                case "5", "quit" -> {break;}
+                case "5", "items", "list", "list items" -> this.inventory.showInventory();
+                case "6", "exit", "quit" -> {decision = true;}
             }
             System.out.println();
         }

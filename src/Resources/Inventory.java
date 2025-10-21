@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    private List<Item> items = new ArrayList<Item>();
+    private ArrayList<Item> items = new ArrayList<Item>();
 
     public Inventory() {
-        for (int i = 0; i <= 3; i++) {
-            items.set(i, new HealingPotion());
+        for (int i = 0; i < 3; i++) {
+            items.add(new HealingPotion());
         }
     }
 

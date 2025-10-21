@@ -5,6 +5,7 @@ import Resources.UsableObjects.Armor;
 import Resources.UsableObjects.DefinedItems.Armor.DefaultArmor;
 import Resources.UsableObjects.DefinedItems.Armor.LegendaryArmor;
 import Resources.UsableObjects.DefinedItems.Armor.MagicArmor;
+import Resources.UsableObjects.DefinedItems.Potions.HealingPotion;
 import Resources.UsableObjects.DefinedItems.Weapons.Axes.CombatHammer;
 import Resources.UsableObjects.DefinedItems.Weapons.Axes.DefaultAxe;
 import Resources.UsableObjects.DefinedItems.Weapons.Axes.OldLumberjacksAxe;
@@ -125,7 +126,9 @@ public class ExploreEvent implements Event {
                         System.out.println("Y/N ->");
                         choice = input.nextLine();
                         if (choice.toLowerCase().equals("y") || choice.toLowerCase().equals("yes")) {
-                            player.pickUp(objectInChest);
+                            for (int i = 0; i < amountOfHealingPotions; i++) {
+                                player.pickUp(new HealingPotion());
+                            }
                         }
                     }
                     System.out.println("You returned to the entrance");
