@@ -1,31 +1,15 @@
 package Resources.Events;
 
 import Resources.Characters.Player;
-import Resources.UsableObjects.Armor;
-import Resources.UsableObjects.DefinedItems.Armor.DefaultArmor;
-import Resources.UsableObjects.DefinedItems.Armor.LegendaryArmor;
-import Resources.UsableObjects.DefinedItems.Armor.MagicArmor;
 import Resources.UsableObjects.DefinedItems.Potions.HealingPotion;
-import Resources.UsableObjects.DefinedItems.Weapons.Axes.CombatHammer;
-import Resources.UsableObjects.DefinedItems.Weapons.Axes.DefaultAxe;
-import Resources.UsableObjects.DefinedItems.Weapons.Axes.OldLumberjacksAxe;
-import Resources.UsableObjects.DefinedItems.Weapons.Bows.DefaultBow;
-import Resources.UsableObjects.DefinedItems.Weapons.Bows.LongBow;
-import Resources.UsableObjects.DefinedItems.Weapons.Bows.RoyalCrossbow;
-import Resources.UsableObjects.DefinedItems.Weapons.Daggers.DefaultDagger;
-import Resources.UsableObjects.DefinedItems.Weapons.Daggers.EnhancedDefaultDagger;
-import Resources.UsableObjects.DefinedItems.Weapons.Daggers.KitchenKnife;
-import Resources.UsableObjects.DefinedItems.Weapons.Wands.AIWand;
-import Resources.UsableObjects.DefinedItems.Weapons.Wands.DefaultWand;
-import Resources.UsableObjects.DefinedItems.Weapons.Wands.LightningWand;
 import Resources.UsableObjects.Item;
-import Resources.UsableObjects.Weapon;
 
 import java.util.Scanner;
 
+import static Resources.Events.ItemFactory.*;
 import static Resources.UsefulFunctions.generateRandomInt;
 
-public class ExploreEvent implements Event {
+public class ExploreEvent implements Event{
     private boolean decision;
 
     private void curseEvent(Player player, Item item, int amount, int probability) {
@@ -40,54 +24,7 @@ public class ExploreEvent implements Event {
         }
     }
 
-    private Weapon generateAxe() {
-        int randomNumber = generateRandomInt(1, 10);
-        return switch (randomNumber) {
-            case 1, 2 -> new OldLumberjacksAxe();
-            case 3, 4, 5, 6 -> new CombatHammer();
-            default -> new DefaultAxe();
-        };
-    }
 
-    private Weapon generateBow() {
-        int randomNumber = generateRandomInt(1, 10);
-        return switch (randomNumber) {
-            case 1, 2 -> new RoyalCrossbow();
-            case 3, 4, 5, 6 -> new LongBow();
-            default -> new DefaultBow();
-        };
-    }
-
-    private Weapon generateDagger() {
-        int randomNumber = generateRandomInt(1, 10);
-        return switch (randomNumber) {
-            case 1, 2 -> new EnhancedDefaultDagger();
-            case 3, 4, 5, 6 -> new KitchenKnife();
-            default -> new DefaultDagger();
-        };
-    }
-
-    private Weapon generateWand() {
-        int randomNumber = generateRandomInt(1, 10);
-        return switch (randomNumber) {
-            case 1, 2 -> new LightningWand();
-            case 3, 4, 5, 6 -> new AIWand();
-            default -> new DefaultWand();
-        };
-    }
-
-    private int generateAmountOfHealingPotions() {
-        return generateRandomInt(0, 2);
-    }
-
-    private Armor generateArmor() {
-        int randomNumber = generateRandomInt(1, 10);
-        return switch (randomNumber) {
-            case 1, 2 -> new LegendaryArmor();
-            case 3, 4, 5, 6 -> new MagicArmor();
-            default -> new DefaultArmor();
-        };
-    }
 
     private void chestEvent(Player player) {
         int randomNumber = generateRandomInt(1, 4);
