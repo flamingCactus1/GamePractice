@@ -32,7 +32,6 @@ public class Player extends Character {
     }
 
     private void setPlayerClass() {
-        boolean done = true;
         do {
             String response = "";
             Scanner sc = new Scanner(System.in);
@@ -43,18 +42,17 @@ public class Player extends Character {
             System.out.println("4. ROGUE");
             System.out.print("->");
             response = sc.nextLine();
-            switch (response) {
-                case "Mage", "MAGE", "mage" -> setCharacterStats(PlayerClass.MAGE, 0,0,80);
-                case "Barbarian", "BARBARIAN", "barbarian" -> setCharacterStats(PlayerClass.BARBARIAN, 5,3,70);
-                case "Archer", "ARCHER", "archer" -> setCharacterStats(PlayerClass.ARCHER, 2,2,100);
-                case "Rogue", "ROGUE", "rogue" -> setCharacterStats(PlayerClass.ROGUE, 3,1,100);
+            switch (response.toLowerCase()) {
+                case "1", "mage" -> setCharacterStats(PlayerClass.MAGE, 0,0,80);
+                case "2", "barbarian" -> setCharacterStats(PlayerClass.BARBARIAN, 5,3,70);
+                case "3", "archer" -> setCharacterStats(PlayerClass.ARCHER, 2,2,100);
+                case "4", "rogue" -> setCharacterStats(PlayerClass.ROGUE, 3,1,100);
                 default -> {
                     System.out.println("Invalid input");
-                    done = false;
                 }
             }
             System.out.println();
-        } while (!done);
+        } while (this.getPlayerClass()==null);
     }
 
     private void setCharacterStats(PlayerClass playerClass, int attack, int defence, int maxHealth) {
