@@ -118,6 +118,48 @@ public class Player extends Character {
         };
     }
 
+    public void exploreInventory(){
+        while(true){
+            this.inventory.showInventory();
+            System.out.println("What would you like to do?");
+            System.out.println("1. Explore item");
+            System.out.println("2. Remove item");
+            System.out.println("3. Equip item");
+            System.out.println("4. Use item");
+            System.out.println("5. Quit");
+            Scanner sc = new Scanner(System.in);
+            String response = sc.nextLine();
+            switch (response.toLowerCase()) {
+                case "1", "explore", "explore item" -> {
+                    System.out.println("What item would you like to explore?");
+                    response = sc.nextLine();
+                    this.inventory.showDetails(response);
+                }
+                case "2", "remove ", "remove item" -> {
+                    System.out.println("What item would you like to remove?");
+                    response = sc.nextLine();
+                    this.inventory.removeItem(response);
+                }
+                case "3", "equip", "equip item" -> {
+                    System.out.println("What item would you like to equip?");
+                    response = sc.nextLine();
+                    this.equipment.equip(this.inventory.getItem(response), this);
+                    if (this.inventory.getItem(response) != null) {
+                        this.inventory.removeItem(response);
+                    }
+                }
+                case "4", "use", "use item" -> {
+                    System.out.println("What item would you like to use?");
+                    response = sc.nextLine();
+                    this.inventory.useItem(this.inventory.getItem(response), this);
+                }
+                case "5", "quit" -> {break;}
+            }
+            System.out.println();
+        }
+
+    }
+
     @Override
     public void heal(int amount) {
         if(this.inventory.getAmountOfHealingPotions()>0){

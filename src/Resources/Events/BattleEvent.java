@@ -24,16 +24,32 @@ public class BattleEvent implements Event {
             System.out.println("6. Exit");
             System.out.print("->");
             String choice = input.nextLine();
-            switch (choice) {
-                case "1", "Attack", "attack", "ATTACK" -> {
+            switch (choice.toLowerCase()) {
+                case "1", "attack" -> {
                     player.attack(this.enemy);
                     actionPoints--;
                 }
-                case "2", "Heal", "heal", "HEAL" -> {
+                case "2", "heal" -> {
                     player.heal(30);
+                    actionPoints--;
+                }
+                case "3", "explore" -> {
+                    player.exploreInventory();
+                }
+                case "4", "show your stats", "stats" -> {
+                    player.showStats();
+                }
+                case "5", "show enemy stats", "enemy stats"{
+                    this.enemy.showEnemyStats();
+                }
+                case "6", "exit" -> {
+                    break;
+                }
+                default -> {
+                    System.out.println("Invalid choice. Try again.");
                 }
             }
-
+            System.out.println();
         }
     }
 
@@ -43,6 +59,7 @@ public class BattleEvent implements Event {
         System.out.println(this.enemy.getName() + " the " + this.enemy.getEnemyTypeString() + " aggressively stares at you");
         System.out.println();
         while(enemy.isAlive() && player.isAlive()){
+            makeMove(player);
 
         }
 

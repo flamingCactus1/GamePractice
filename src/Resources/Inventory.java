@@ -47,6 +47,10 @@ public class Inventory {
         }
     }
 
+    public Item getItem(String itemName) {
+        return items.stream().filter(n -> n.getName().equals(itemName)).findFirst().orElse(null);
+    }
+
     public long getAmountOfHealingPotions() {
         return items.stream().filter(n -> n instanceof HealingPotion).count();
     }
