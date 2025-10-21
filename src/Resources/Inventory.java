@@ -40,7 +40,7 @@ public class Inventory {
 
     public void showDetails(String name) {
         try {
-            items.stream().filter(n -> n.getName().equals(name.toLowerCase())).forEach(Item::showDetails);
+            items.stream().filter(n -> n.getName().equalsIgnoreCase(name)).forEach(n -> n.showDetails());
         } catch (Exception e) {
             System.out.println("No such item");
         }
