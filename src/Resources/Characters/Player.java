@@ -32,7 +32,6 @@ public class Player extends Character {
     }
 
     private void setPlayerClass() {
-        boolean done = true;
         do {
             String response = "";
             Scanner sc = new Scanner(System.in);
@@ -43,18 +42,17 @@ public class Player extends Character {
             System.out.println("4. ROGUE");
             System.out.print("->");
             response = sc.nextLine();
-            switch (response) {
-                case "Mage", "MAGE", "mage" -> setCharacterStats(PlayerClass.MAGE, 0,0,80);
-                case "Barbarian", "BARBARIAN", "barbarian" -> setCharacterStats(PlayerClass.BARBARIAN, 5,3,70);
-                case "Archer", "ARCHER", "archer" -> setCharacterStats(PlayerClass.ARCHER, 2,2,100);
-                case "Rogue", "ROGUE", "rogue" -> setCharacterStats(PlayerClass.ROGUE, 3,1,100);
+            switch (response.toLowerCase()) {
+                case "1", "mage" -> setCharacterStats(PlayerClass.MAGE, 0,0,80);
+                case "2", "barbarian" -> setCharacterStats(PlayerClass.BARBARIAN, 5,3,70);
+                case "3", "archer" -> setCharacterStats(PlayerClass.ARCHER, 2,2,100);
+                case "4", "rogue" -> setCharacterStats(PlayerClass.ROGUE, 3,1,100);
                 default -> {
                     System.out.println("Invalid input");
-                    done = false;
                 }
             }
             System.out.println();
-        } while (!done);
+        } while (this.getPlayerClass()==null);
     }
 
     private void setCharacterStats(PlayerClass playerClass, int attack, int defence, int maxHealth) {
@@ -128,14 +126,15 @@ public class Player extends Character {
     }
 
     public void exploreInventory(){
-        while(true){
-            this.inventory.showInventory();
+        boolean decision = false;
+        while(!decision){
             System.out.println("What would you like to do?");
             System.out.println("1. Explore item");
             System.out.println("2. Remove item");
             System.out.println("3. Equip item");
             System.out.println("4. Use item");
-            System.out.println("5. Quit");
+            System.out.println("5. List items");
+            System.out.println("6. Quit");
             Scanner sc = new Scanner(System.in);
             String response = sc.nextLine();
             switch (response.toLowerCase()) {
@@ -162,7 +161,8 @@ public class Player extends Character {
                     response = sc.nextLine();
                     this.inventory.useItem(this.inventory.getItem(response), this);
                 }
-                case "5", "quit" -> {break;}
+                case "5", "items", "list", "list items" -> this.inventory.showInventory();
+                case "6", "exit", "quit" -> {decision = true;}
             }
             System.out.println();
         }
