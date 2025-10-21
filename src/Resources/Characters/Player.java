@@ -15,6 +15,7 @@ public class Player extends Character {
     private int level;
     private int experience;
     private int experienceToNextLevel;
+    private boolean goToMainMenu;
 
     public Player() {
         Scanner sc = new Scanner(System.in);
@@ -27,6 +28,7 @@ public class Player extends Character {
         this.level = 1;
         this.experience = 0;
         this.experienceToNextLevel = 100;
+        this.goToMainMenu = false;
         showStats();
 
     }
@@ -167,6 +169,14 @@ public class Player extends Character {
             System.out.println();
         }
 
+    }
+
+    public boolean isGoToMainMenu() {
+        return goToMainMenu;
+    }
+
+    public void setGoToMainMenu(boolean goToMainMenu) {
+        this.goToMainMenu = goToMainMenu;
     }
 
     @Override

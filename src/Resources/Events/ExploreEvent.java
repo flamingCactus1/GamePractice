@@ -150,9 +150,11 @@ public class ExploreEvent implements Event {
                 }
             }
             System.out.println();
-            if (this.decision) break;
+            if (this.decision) {
+                player.setGoToMainMenu(true);
+                break;
+            }
         }
-        System.out.println("What would yo like to do");
     }
 
 
