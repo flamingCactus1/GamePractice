@@ -6,7 +6,7 @@ import Resources.WeaponClass;
 public final class EnhancedDefaultDagger extends Weapon {
     public EnhancedDefaultDagger(){
         super("Oddly familiar looking dagger",
-                "This dagger belonged to one of your privious iterations and was enhanced with your death",
+                "This dagger belonged to one of your previous iterations and was enhanced with your death",
                 17,
                 WeaponClass.DAGGER);
     }
