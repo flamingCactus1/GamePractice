@@ -36,13 +36,14 @@ public class Weapon extends Item {
     @Override
     public void use(Player player) {
         System.out.println("Nothing happened");
+        System.out.println();
     }
 
     @Override
     public void showDetails() {
-        System.out.println("Name: " + this.getName());
-        System.out.println("Description: " + this.getDescription());
+        super.showDetails();
         System.out.println("Attack bonus: " + attackBonus);
         System.out.println("Weapon class: " + weaponClass);
+        System.out.println();
     }
 }

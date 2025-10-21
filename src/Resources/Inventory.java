@@ -26,6 +26,7 @@ public class Inventory {
 
     public void showInventory() {
         items.forEach(n -> System.out.println(n.getName()));
+        System.out.println();
     }
 
     public void showDetails(String name) {
@@ -34,6 +35,7 @@ public class Inventory {
         } catch (Exception e) {
             System.out.println("No such item");
         }
+        System.out.println();
     }
 
 }

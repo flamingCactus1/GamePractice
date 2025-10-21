@@ -13,6 +13,9 @@ abstract public class Character {
 
     public void takeDamage(int amount){
         this.health -= (amount - this.defence);
+        System.out.println(this.name + " takes damage: " + amount);
+        System.out.println("Health: " + this.getHealth() + "/" + this.getMaxHealth());
+        System.out.println();
     }
 
     public boolean isAlive(){

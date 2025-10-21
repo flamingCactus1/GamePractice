@@ -24,7 +24,10 @@ public class Equipment {
             case MAGE ->  equipStandardForMage();
             case ROGUE ->  equipStandardForRogue();
             case BARBARIAN -> equipStandardForBarbarian();
-            default -> System.out.println("No class found");
+            default -> {
+                System.out.println("No class found");
+                System.out.println();
+            }
         }
     }
 
@@ -35,6 +38,7 @@ public class Equipment {
             this.armor = (Armor) item;
         } else {
             System.out.println("Cannot equip this item");
+            System.out.println();
         }
     }
 
@@ -61,23 +65,35 @@ public class Equipment {
     private void equipWeapon(Player player, Weapon weapon) {
         if ((weapon.getWeaponClass() == WeaponClass.BOW) && (player.getPlayerClass() != PlayerClass.ARCHER)) {
             System.out.println("You can not equip bows");
+            System.out.println();
         } else {
             this.weapon = weapon;
+            System.out.println(player.getName() + " equipped" + weapon.getName() + "as a weapon");
+            System.out.println();
         }
         if ((weapon.getWeaponClass() == WeaponClass.WAND) && (player.getPlayerClass() != PlayerClass.MAGE)) {
             System.out.println("You can not equip wands");
+            System.out.println();
         } else {
             this.weapon = weapon;
+            System.out.println(player.getName() + " equipped" + weapon.getName() + "as a weapon");
+            System.out.println();
         }
         if ((weapon.getWeaponClass() == WeaponClass.AXE) && (player.getPlayerClass() != PlayerClass.BARBARIAN)) {
             System.out.println("You can not equip axes");
+            System.out.println();
         } else {
             this.weapon = weapon;
+            System.out.println(player.getName() + " equipped" + weapon.getName() + "as a weapon");
+            System.out.println();
         }
         if ((weapon.getWeaponClass() == WeaponClass.DAGGER) && (player.getPlayerClass() != PlayerClass.ROGUE)) {
             System.out.println("You can not equip daggers");
+            System.out.println();
         }else {
             this.weapon = weapon;
+            System.out.println(player.getName() + " equipped" + weapon.getName() + "as a weapon");
+            System.out.println();
         }
     }
 

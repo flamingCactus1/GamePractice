@@ -27,6 +27,7 @@ public class Player extends Character {
         this.level = 1;
         this.experience = 0;
         this.experienceToNextLevel = 100;
+        showStats();
 
     }
 
@@ -43,48 +44,25 @@ public class Player extends Character {
             System.out.print("->");
             response = sc.nextLine();
             switch (response) {
-                case "Mage", "MAGE", "mage" -> setMage();
-                case "Barbarian", "BARBARIAN", "barbarian" -> setBarbarian();
-                case "Archer", "ARCHER", "archer" -> setArcher();
-                case "Rogue", "ROGUE", "rogue" -> setRogue();
+                case "Mage", "MAGE", "mage" -> setCharacterStats(PlayerClass.MAGE, 0,0,80);
+                case "Barbarian", "BARBARIAN", "barbarian" -> setCharacterStats(PlayerClass.BARBARIAN, 5,3,70);
+                case "Archer", "ARCHER", "archer" -> setCharacterStats(PlayerClass.ARCHER, 2,2,100);
+                case "Rogue", "ROGUE", "rogue" -> setCharacterStats(PlayerClass.ROGUE, 3,1,100);
                 default -> {
                     System.out.println("Invalid input");
                     done = false;
                 }
             }
+            System.out.println();
         } while (!done);
     }
 
-    private void setRogue() {
-        this.playerClass = PlayerClass.ROGUE;
-        this.setAttack(3);
-        this.setDefence(1);
-        this.setHealth(100);
-        this.setMaxHealth(100);
-    }
-
-    private void setArcher() {
-        this.playerClass = PlayerClass.ARCHER;
-        this.setAttack(2);
-        this.setDefence(2);
-        this.setHealth(100);
-        this.setMaxHealth(100);
-    }
-
-    private void setBarbarian() {
-        this.playerClass = PlayerClass.BARBARIAN;
-        this.setAttack(5);
-        this.setDefence(3);
-        this.setHealth(70);
-        this.setMaxHealth(70);
-    }
-
-    private void setMage() {
-        this.playerClass = PlayerClass.MAGE;
-        this.setAttack(0);
-        this.setDefence(0);
-        this.setHealth(80);
-        this.setMaxHealth(80);
+    private void setCharacterStats(PlayerClass playerClass, int attack, int defence, int maxHealth) {
+        this.playerClass = playerClass;
+        this.setAttack(attack);
+        this.setDefence(defence);
+        this.setMaxHealth(maxHealth);
+        this.setHealth(maxHealth);
     }
 
     private void levelUp() {
@@ -102,6 +80,7 @@ public class Player extends Character {
         System.out.println("Max health: " + this.getMaxHealth());
         System.out.println("Attack: " + this.getAttack());
         System.out.println("Defence: " + this.getDefence());
+        System.out.println();
     }
 
     public void gainExperience(int amount) {
@@ -122,6 +101,7 @@ public class Player extends Character {
         System.out.println("Attack with bonus: " + (this.getAttack() + this.equipment.getTotalAttackBonus()));
         System.out.println("Experience: " + this.experience);
         System.out.println("Experience to the next level: " + this.experienceToNextLevel);
+        System.out.println();
     }
 
     public PlayerClass getPlayerClass() {
@@ -143,6 +123,10 @@ public class Player extends Character {
     public void attack(Character target) {
         int currentAttack = this.getAttack() + this.equipment.getTotalAttackBonus();
         target.takeDamage(currentAttack);
+        System.out.println(this.getName() + " attacks");
+        System.out.println(target.getName() + " takes " + currentAttack + " damage");
+        System.out.println();
+
     }
 
     @Override

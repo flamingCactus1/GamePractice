@@ -1,5 +1,7 @@
 package Resources.Characters;
 
+import static Resources.UsefulFunctions.generateRandomInt;
+
 public class Enemy extends Character {
     private EnemyType enemyType;
     private int experienceReward;
@@ -11,7 +13,7 @@ public class Enemy extends Character {
     }
 
     private String nameRandomizer() {
-        int randomNumber = (int) (Math.random() * 3 + 1);
+        int randomNumber = generateRandomInt(1, 4);
         return switch (randomNumber) {
             case 1 -> "Scarry Josh";
             case 2 -> "Clumsy David";
@@ -22,7 +24,7 @@ public class Enemy extends Character {
     }
 
     private EnemyType typeRandomizer() {
-        int randomNumber = (int) (Math.random() * 2 + 1);
+        int randomNumber = generateRandomInt(1, 3);
         return switch (randomNumber) {
             case 2 -> EnemyType.ORC;
             case 3 -> EnemyType.SKELETON;
@@ -30,45 +32,31 @@ public class Enemy extends Character {
         };
     }
 
-    public void createEnemyStats(EnemyType enemyType){
-        switch (enemyType){
-            case ORC -> createOrc();
-            case SKELETON -> createSkeleton();
-            case GOBLIN -> createGoblin();
+    public void createEnemyStats(EnemyType enemyType) {
+        switch (enemyType) {
+            case ORC -> generateEnemy(2,3,70,30);
+            case SKELETON -> generateEnemy(6,0,30,15);
+            case GOBLIN -> generateEnemy(4,1,50,25);
             default -> System.out.println("No enemy type found");
         }
     }
 
-    public void createSkeleton(){
-        this.setAttack(6);
-        this.setDefence(0);
-        this.setMaxHealth(30);
-        this.setHealth(30);
-        this.experienceReward = 15;
+    private void generateEnemy(int attack, int defence, int maxHealth, int experienceReward) {
+        this.setAttack(attack);
+        this.setDefence(defence);
+        this.setMaxHealth(maxHealth);
+        this.setHealth(maxHealth);
+        this.experienceReward = experienceReward;
     }
 
-    public void createGoblin(){
-        this.setAttack(4);
-        this.setDefence(1);
-        this.setMaxHealth(50);
-        this.setHealth(50);
-        this.experienceReward = 25;
-    }
 
-    public void createOrc(){
-        this.setAttack(2);
-        this.setDefence(3);
-        this.setMaxHealth(70);
-        this.setHealth(70);
-        this.experienceReward = 30;
-    }
-
-    public void showEnemyStats(){
+    public void showEnemyStats() {
         System.out.println("Name: " + this.getName());
         System.out.println("Type: " + this.getEnemyTypeString());
         System.out.println("Health: " + this.getHealth() + "/" + this.getMaxHealth());
         System.out.println("Attack: " + this.getAttack());
         System.out.println("Defence: " + this.getDefence());
+        System.out.println();
 
     }
 
@@ -76,8 +64,8 @@ public class Enemy extends Character {
         return experienceReward;
     }
 
-    private String getEnemyTypeString(){
-        return switch (this.enemyType){
+    private String getEnemyTypeString() {
+        return switch (this.enemyType) {
             case ORC -> "ORC";
             case SKELETON -> "SKELETON";
             case GOBLIN -> "GOBLIN";
@@ -87,6 +75,8 @@ public class Enemy extends Character {
 
     @Override
     public void attack(Character target) {
+        System.out.println(this.getName() + " attacks");
+        System.out.println();
         target.takeDamage(this.getAttack());
     }
 }

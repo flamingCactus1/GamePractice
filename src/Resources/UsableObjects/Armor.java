@@ -22,11 +22,13 @@ public class Armor extends Item{
     @Override
     public void use(Player player) {
         System.out.println("Nothing happened");
+        System.out.println();
     }
 
     @Override
     public void showDetails() {
         super.showDetails();
         System.out.println("Defence bonus: " + this.defenceBonus);
+        System.out.println();
     }
 }
