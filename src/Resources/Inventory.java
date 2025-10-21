@@ -20,8 +20,17 @@ public class Inventory {
         items.add(item);
     }
 
-    public void removeItem(String itemName) {
-        items.removeIf(item -> item.getName().equals(itemName));
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
+    public void removeItem(String name) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getName().equals(name)) {
+                items.remove(i);
+                break;
+            }
+        }
     }
 
     public void showInventory() {
@@ -31,7 +40,7 @@ public class Inventory {
 
     public void showDetails(String name) {
         try {
-            items.stream().filter(n -> n.getName().equals(name)).forEach(Item::showDetails);
+            items.stream().filter(n -> n.getName().equals(name.toLowerCase())).forEach(Item::showDetails);
         } catch (Exception e) {
             System.out.println("No such item");
         }
@@ -41,8 +50,8 @@ public class Inventory {
     public void useItem(Item  item, Player player) {
         if (items.contains(item)) {
             item.use(player);
-            if (item instanceof HealingPotion) {
-                items.removeIf(n -> n.getName().equals(item.getName()));
+            if (item instanceof HealingPotion) {;
+                removeItem(item);
             }
         }
     }
