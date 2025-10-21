@@ -3,9 +3,10 @@ package Resources.Events;
 import Resources.Characters.Enemy;
 import Resources.Characters.Player;
 import Resources.Characters.PlayerClass;
-import Resources.UsableObjects.DefinedItems.Potions.HealingPotion;
 
 import java.util.Scanner;
+
+import static Resources.UsefulFunctions.generateRandomInt;
 
 public class BattleEvent implements Event {
     private Enemy enemy;
@@ -60,8 +61,25 @@ public class BattleEvent implements Event {
         System.out.println();
         while(enemy.isAlive() && player.isAlive()){
             makeMove(player);
-
+            if(!this.enemy.isAlive()){
+                player.gainExperience(this.enemy.getExperienceReward());
+                System.out.println("Congratulations, you've won!");
+                System.out.println();
+                break;
+            }
+            int enemyChoice = generateRandomInt(1,8);
+            switch (enemyChoice){
+                case 1 -> this.enemy.heal(5);
+                case 2 -> {
+                    System.out.println("Enemy has attempted to attack");
+                    System.out.println("Attack had no effect on you");
+                }
+                default -> this.enemy.attack(player);
+            }
+            if (!player.isAlive()){
+                System.out.println("You've lost!");
+                break;
+            }
         }
-
     }
 }
