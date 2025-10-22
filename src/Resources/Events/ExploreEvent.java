@@ -44,7 +44,8 @@ public class ExploreEvent implements Event {
             System.out.println("2. Heal");
             System.out.println("3. Explore Inventory");
             System.out.println("4. Show your stats");
-            System.out.println("5. Exit");
+            System.out.println("5. Show your equipment");
+            System.out.println("0. Exit");
             System.out.print("->");
             String choice = input.nextLine();
             switch (choice.toLowerCase()) {
@@ -86,7 +87,10 @@ public class ExploreEvent implements Event {
                 case "4", "show your stats", "stats" -> {
                     player.showStats();
                 }
-                case "5", "exit" -> {
+                case "5", "show your equipment", "equipment" -> {
+                    player.showEquipment();
+                }
+                case "0", "exit" -> {
                     this.decision = true;
                 }
                 default -> {
