@@ -127,6 +127,13 @@ public class Player extends Character {
         return this.inventory.hasItem(itemName);
     }
 
+    public void showEquipment() {
+        System.out.println("Weapon:");
+        this.equipment.getWeapon().showItemDetails();
+        System.out.println("Armor:");
+        this.equipment.getArmor().showItemDetails();
+    }
+
     public void exploreInventory(){
         boolean decision = false;
         while(!decision){
@@ -137,6 +144,7 @@ public class Player extends Character {
             System.out.println("4. Use item");
             System.out.println("5. List items");
             System.out.println("6. Quit");
+            System.out.print("->");
             Scanner sc = new Scanner(System.in);
             String response = sc.nextLine();
             switch (response.toLowerCase()) {

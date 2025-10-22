@@ -9,21 +9,20 @@ import java.util.Scanner;
 import static Resources.Events.ItemFactory.*;
 import static Resources.UsefulFunctions.generateRandomInt;
 
-public class ExploreEvent implements Event{
+public class ExploreEvent implements Event {
     private boolean decision;
 
     private void curseEvent(Player player, Item item, int amount, int probability) {
         int randomNumber = generateRandomInt(1, 100);
         if (randomNumber <= probability) {
             player.setMaxHealth(player.getMaxHealth() - amount);
-            System.out.println("You have been cured by picking up the" + item.getName());
+            System.out.println("You have been cured by picking up the " + item.getName());
             System.out.println("Your max HP is reduced by " + amount);
             if (player.getHealth() > player.getMaxHealth()) {
                 player.setHealth(player.getMaxHealth());
             }
         }
     }
-
 
 
     private void chestEvent(Player player) {
@@ -35,6 +34,7 @@ public class ExploreEvent implements Event{
             case 4 -> generateWand();
             default -> generateArmor();
         };
+        boolean isExplored = false;
         int amountOfHealingPotions = generateAmountOfHealingPotions();
         System.out.println("You enter the room with the big chest in the middle of it");
         while (player.isAlive()) {
@@ -49,23 +49,30 @@ public class ExploreEvent implements Event{
             String choice = input.nextLine();
             switch (choice.toLowerCase()) {
                 case "1", "explore", "explore the chest", "explore chest", "chest" -> {
-                    System.out.println("There is a " + objectInChest.getName() + " in the chest");
-                    System.out.println("Would you like to collect it?");
-                    System.out.println("Y/N ->");
-                    choice = input.nextLine();
-                    if (choice.toLowerCase().equals("y") || choice.toLowerCase().equals("yes")) {
-                        player.pickUp(objectInChest);
-                        curseEvent(player, objectInChest, generateRandomInt(5,20), 33);
+                    if (isExplored && amountOfHealingPotions == 0) {
+                        System.out.println("You have already explored the chest");
+                        System.out.println("There is nothing left for you inside the chest");
+                    } else if (!isExplored) {
+                        System.out.println("There is a " + objectInChest.getName() + " in the chest");
+                        System.out.println("Would you like to collect it?");
+                        System.out.print("Y/N ->");
+                        choice = input.nextLine();
+                        if (choice.toLowerCase().equals("y") || choice.toLowerCase().equals("yes")) {
+                            player.pickUp(objectInChest);
+                            curseEvent(player, objectInChest, generateRandomInt(5, 20), 33);
+                            isExplored = true;
+                        }
                     }
                     if (amountOfHealingPotions > 0) {
-                        System.out.println("There are " + amountOfHealingPotions + " healing potions in the chest as well");
+                        System.out.println("There are " + amountOfHealingPotions + " healing potions in the chest");
                         System.out.println("Would you like to collect it?");
-                        System.out.println("Y/N ->");
+                        System.out.print("Y/N ->");
                         choice = input.nextLine();
                         if (choice.toLowerCase().equals("y") || choice.toLowerCase().equals("yes")) {
                             for (int i = 0; i < amountOfHealingPotions; i++) {
                                 player.pickUp(new HealingPotion());
                             }
+                            amountOfHealingPotions = 0;
                         }
                     }
                     System.out.println("You returned to the entrance");
