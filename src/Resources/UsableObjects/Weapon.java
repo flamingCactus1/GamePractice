@@ -40,8 +40,8 @@ public class Weapon extends Item {
     }
 
     @Override
-    public void showDetails() {
-        super.showDetails();
+    public void showItemDetails() {
+        super.showItemDetails();
         System.out.println("Attack bonus: " + attackBonus);
         System.out.println("Weapon class: " + weaponClass);
         System.out.println();

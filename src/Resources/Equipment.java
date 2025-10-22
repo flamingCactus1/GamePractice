@@ -31,6 +31,14 @@ public class Equipment {
         }
     }
 
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public Armor getArmor() {
+        return armor;
+    }
+
     public void equip(Item item, Player player) {
         if (item instanceof Weapon) {
             equipWeapon(player, (Weapon) item);

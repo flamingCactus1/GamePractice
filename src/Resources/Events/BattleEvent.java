@@ -23,7 +23,8 @@ public class BattleEvent implements Event {
             System.out.println("3. Explore Inventory");
             System.out.println("4. Show your stats");
             System.out.println("5. Show enemy stats");
-            System.out.println("6. Exit");
+            System.out.println("6. Show your equipment");
+            System.out.println("0. Exit");
             System.out.print("->");
             String choice = input.nextLine();
             switch (choice.toLowerCase()) {
@@ -44,7 +45,10 @@ public class BattleEvent implements Event {
                 case "5", "show enemy stats", "enemy stats" ->{
                     this.enemy.showEnemyStats();
                 }
-                case "6", "exit" -> {
+                case "6", "show your equipment", "equipment" -> {
+                    player.showEquipment();
+                }
+                case "0", "exit" -> {
                     this.decision = true;
                 }
                 default -> {

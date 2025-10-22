@@ -45,16 +45,16 @@ public class Player extends Character {
             System.out.print("->");
             response = sc.nextLine();
             switch (response.toLowerCase()) {
-                case "1", "mage" -> setCharacterStats(PlayerClass.MAGE, 0,0,80);
-                case "2", "barbarian" -> setCharacterStats(PlayerClass.BARBARIAN, 5,3,70);
-                case "3", "archer" -> setCharacterStats(PlayerClass.ARCHER, 2,2,100);
-                case "4", "rogue" -> setCharacterStats(PlayerClass.ROGUE, 3,1,100);
+                case "1", "mage" -> setCharacterStats(PlayerClass.MAGE, 0, 0, 80);
+                case "2", "barbarian" -> setCharacterStats(PlayerClass.BARBARIAN, 5, 3, 70);
+                case "3", "archer" -> setCharacterStats(PlayerClass.ARCHER, 2, 2, 100);
+                case "4", "rogue" -> setCharacterStats(PlayerClass.ROGUE, 3, 1, 100);
                 default -> {
                     System.out.println("Invalid input");
                 }
             }
             System.out.println();
-        } while (this.getPlayerClass()==null);
+        } while (this.getPlayerClass() == null);
     }
 
     private void setCharacterStats(PlayerClass playerClass, int attack, int defence, int maxHealth) {
@@ -108,8 +108,8 @@ public class Player extends Character {
         return playerClass;
     }
 
-    private String getPlayerClassString(){
-        return switch (this.playerClass){
+    private String getPlayerClassString() {
+        return switch (this.playerClass) {
             case MAGE -> "Mage";
             case BARBARIAN -> "Barbarian";
             case ARCHER -> "Archer";
@@ -127,9 +127,16 @@ public class Player extends Character {
         return this.inventory.hasItem(itemName);
     }
 
-    public void exploreInventory(){
+    public void showEquipment() {
+        System.out.println("Weapon:");
+        this.equipment.getWeapon().showItemDetails();
+        System.out.println("Armor:");
+        this.equipment.getArmor().showItemDetails();
+    }
+
+    public void exploreInventory() {
         boolean decision = false;
-        while(!decision){
+        while (!decision) {
             System.out.println("What would you like to do?");
             System.out.println("1. Explore item");
             System.out.println("2. Remove item");
@@ -137,6 +144,7 @@ public class Player extends Character {
             System.out.println("4. Use item");
             System.out.println("5. List items");
             System.out.println("6. Quit");
+            System.out.print("->");
             Scanner sc = new Scanner(System.in);
             String response = sc.nextLine();
             switch (response.toLowerCase()) {
@@ -164,7 +172,9 @@ public class Player extends Character {
                     this.inventory.useItem(this.inventory.getItem(response), this);
                 }
                 case "5", "items", "list", "list items" -> this.inventory.showInventory();
-                case "6", "exit", "quit" -> {decision = true;}
+                case "6", "exit", "quit" -> {
+                    decision = true;
+                }
             }
             System.out.println();
         }
@@ -181,11 +191,15 @@ public class Player extends Character {
 
     @Override
     public void heal(int amount) {
-        if(this.inventory.getAmountOfHealingPotions()>0){
+        if (this.inventory.getAmountOfHealingPotions() > 0 && this.getHealth() != this.getMaxHealth()) {
             super.heal(amount);
             this.inventory.removeItem("Healing Potion");
-        }else{
-            System.out.println("No healing potions found");
+            System.out.println(this.getName() + " heals");
+            System.out.println(this.getName() + "'s HP are now " + this.getHealth() + "/" + this.getMaxHealth());
+        } else if (this.getHealth() >= this.getMaxHealth()) {
+            System.out.println("No healing needed");
+        } else if (this.inventory.getAmountOfHealingPotions() <= 0) {
+            System.out.println("You are out of healing potions");
         }
     }
 

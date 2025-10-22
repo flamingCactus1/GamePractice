@@ -34,7 +34,7 @@ abstract public class Item {
 
     abstract public void use(Player player);
 
-    public void showDetails() {
+    public void showItemDetails() {
         System.out.println("Name: " + this.name);
         System.out.println("Description: " + this.description);
     }
