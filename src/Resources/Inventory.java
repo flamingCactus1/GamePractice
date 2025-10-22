@@ -38,11 +38,10 @@ public class Inventory {
     }
 
     public void showDetails(String name) {
-
         items.stream()
-                .filter(n -> n.getName()
-                        .equalsIgnoreCase(name))
-                .findFirst().ifPresentOrElse(n -> n.showItemDetails(), () -> System.out.println("Item not found"));
+                .filter(n -> n.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .ifPresentOrElse(n -> n.showItemDetails(), () -> System.out.println("Item not found"));
         System.out.println();
     }
 
