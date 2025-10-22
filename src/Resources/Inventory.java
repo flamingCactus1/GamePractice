@@ -5,7 +5,6 @@ import Resources.UsableObjects.DefinedItems.Potions.HealingPotion;
 import Resources.UsableObjects.Item;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Inventory {
     private ArrayList<Item> items = new ArrayList<Item>();
@@ -40,7 +39,7 @@ public class Inventory {
 
     public void showDetails(String name) {
         try {
-            items.stream().filter(n -> n.getName().equalsIgnoreCase(name)).forEach(n -> n.showDetails());
+            items.stream().filter(n -> n.getName().equalsIgnoreCase(name)).forEach(n -> n.showItemDetails());
         } catch (Exception e) {
             System.out.println("No such item");
         }

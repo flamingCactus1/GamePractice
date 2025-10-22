@@ -26,8 +26,8 @@ public class Armor extends Item{
     }
 
     @Override
-    public void showDetails() {
-        super.showDetails();
+    public void showItemDetails() {
+        super.showItemDetails();
         System.out.println("Defence bonus: " + this.defenceBonus);
         System.out.println();
     }
